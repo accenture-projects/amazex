@@ -1,0 +1,80 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block first %}
+    <br>
+    <img style="width: 47%; height: 50%" class="mx-auto d-block left-avatar" src="{% static 'gif/hi.gif' %}">
+    <div style="padding-left: 132px; padding-right: 132px">
+        <h5 style="color: white; margin-top: 40px;" id="type_text" class="ml-3 text-center"></h5>
+    </div>
+
+    <script type="text/javascript">
+        var myText = "I have found two latest laptops based on your choice. Asus & alienware.";
+        var myArray = myText.split("");
+        var loopTimer;
+
+        function frameLoop() {
+            if (myArray.length > 0) {
+                document.getElementById("type_text").innerHTML += myArray.shift();
+            } else {
+                clearTimeout(loopTimer);
+                return false;
+            }
+            loopTimer = setTimeout('frameLoop()', 70);
+        }
+
+        frameLoop();
+    </script>
+    <div style="margin-top: -120px;"
+         class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="logoarea pt-5 pb-5">
+            {#                <img class="left-avatar" src="{% static 'images/animate-hello.gif' %}">#}
+        </div>
+
+        <div class="message">
+            <audio autoplay id="audioplayer" src="{% static 'sound/amazey/3.mp3' %}">
+                <source src="{% static 'sound/amazey/3.mp3' %}" type="audio/ogg">
+            </audio>
+
+            <p></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block second %}
+    <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+        <div class="border-danger content-right">
+            <h3 class="text-center">Select brand</h3>
+            <div class="container text-center" style="overflow: auto">
+                <div class="row">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="d-flex">
+                                <img style="height: 50px; width: 50px" src="{% static 'images/laptop/l4.jfif' %}"
+                                     class="card-img-top" alt="...">
+                                <div>
+                                    <h5 style="padding-left: 12px" class="pl-3"><a href="{% url 'asus' %}"
+                                                                                   style="text-decoration: none">Asus
+                                        Rog Strix G15 2020 Octa Core i7 10th Gen - 16 Gb/1 Tb Ssd/4 Gb Graphics</a></h5>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex">
+                                <img style="height: 50px; width: 50px" src="{% static 'images/laptop/l5.jpg' %}"
+                                     class="card-img-top" alt="...">
+                                <div>
+                                    <h5 style="padding-left: 12px" class="pl-3"><a href="{% url 'alienware' %}"
+                                                                                   style="text-decoration: none">Alienware
+                                        Core i7 10th Gen - 16 Gb/512 Gb Ssd/Windows 10 Home/6 Gb Graphics</a></h5>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

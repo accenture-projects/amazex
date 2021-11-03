@@ -1,0 +1,61 @@
+{% extends 'accounts/base-account.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-3 order-md-1 mb-4">
+                <div class="list-group text-center">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        Create Exam
+                    </a>
+                    <div class="d-flex justify-content-between">
+
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-start flex-start">
+                            <i class="bi bi-calendar4-range"></i>
+                            <div style="padding-left: 10px"></div>
+                            <p>Running</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-start flex-start">
+                            <i class="bi bi-skip-forward-circle-fill"></i>
+                            <div style="padding-left: 10px"></div>
+                            <p>Upcoming</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-start flex-start">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <div style="padding-left: 10px"></div>
+                            <p>Completed</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5 order-md-2">
+            <form method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                  <div class="mb-3 row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="email" name='username' value="amaze.demo">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" placeholder="(Demo Password: test123)" id="password">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm">Login</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

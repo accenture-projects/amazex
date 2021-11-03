@@ -1,0 +1,75 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block first %}
+    <br>
+    <br>
+    <div style="padding-left: 132px; padding-right: 132px">
+        <h3 style="color: white; margin-top: 120px;" id="type_text" class="ml-3 text-center"></h3>
+    </div>
+
+    <script type="text/javascript">
+        var myText = "Choose the brand and configuration";
+        var myArray = myText.split("");
+        var loopTimer;
+
+        function frameLoop() {
+            if (myArray.length > 0) {
+                document.getElementById("type_text").innerHTML += myArray.shift();
+            } else {
+                clearTimeout(loopTimer);
+                return false;
+            }
+            loopTimer = setTimeout('frameLoop()', 70);
+        }
+
+        frameLoop();
+    </script>
+    <div style="margin-top: -120px;"
+         class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="logoarea pt-5 pb-5">
+            <img class="left-avatar" src="{% static 'images/animate-hello.gif' %}">
+        </div>
+
+        <div class="message">
+            <audio controls id="audioplayer" src="{% static 'sound/hi.mp3' %}">
+                <source src="{% static 'sound/hi.mp3' %}" type="audio/ogg">
+            </audio>
+
+            <p></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block second %}
+    <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+        <div class="border-danger content-right">
+            <h3 class="text-center">Select laptop configuration</h3>
+            <div class="container text-center">
+                <div class="row">
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

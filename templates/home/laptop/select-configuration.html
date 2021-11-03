@@ -1,0 +1,156 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block first %}
+    <br>
+    <img style="width: 47%; height: 50%" class="mx-auto d-block left-avatar" src="{% static 'gif/hi.gif' %}">
+    <div style="padding-left: 132px; padding-right: 132px">
+        <h5 style="color: white; margin-top: 40px;" id="type_text" class="ml-3 text-center"></h5>
+    </div>
+
+    <script type="text/javascript">
+        var myText = "Laptops are a great choice. We have light weight laptops that are cheap. Medium range laptops are good and budget friendly and high end laptops are for gamers. I suggest you go with medium one. Best suited for office work.";
+        var myArray = myText.split("");
+        var loopTimer;
+
+        function frameLoop() {
+            if (myArray.length > 0) {
+                document.getElementById("type_text").innerHTML += myArray.shift();
+            } else {
+                clearTimeout(loopTimer);
+                return false;
+            }
+            loopTimer = setTimeout('frameLoop()', 70);
+        }
+
+        frameLoop();
+    </script>
+    <div style="margin-top: -120px;"
+         class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+        <div class="logoarea pt-5 pb-5">
+            {#                <img class="left-avatar" src="{% static 'images/animate-hello.gif' %}">#}
+        </div>
+
+        <div class="message">
+            <audio autoplay id="audioplayer-2.1" src="{% static 'sound/amazey/2.1.mp3' %}">
+                <source src="{% static 'sound/amazey/2.1.mp3' %}" type="audio/ogg">
+            </audio>
+            <audio id="audioplayer-2.2" src="{% static 'sound/amazey/2.2.mp3' %}">
+                <source src="{% static 'sound/amazey/1.mp3' %}" type="audio/ogg">
+            </audio>
+            <audio id="audioplayer-2.3" src="{% static 'sound/amazey/2.3.mp3' %}">
+                <source src="{% static 'sound/amazey/1.mp3' %}" type="audio/ogg">
+            </audio>
+            <audio id="audioplayer-2.4" src="{% static 'sound/amazey/2.4.mp3' %}">
+                <source src="{% static 'sound/amazey/1.mp3' %}" type="audio/ogg">
+            </audio>
+            <audio id="audioplayer-2.5" src="{% static 'sound/amazey/2.5.mp3' %}">
+                <source src="{% static 'sound/amazey/1.mp3' %}" type="audio/ogg">
+            </audio>
+
+
+            <p></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block second %}
+    <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+
+        <div id="select-budget" class="border-danger content-right">
+            <h3 class=""><a type="button"><i class="fa fa-home"></i></a> Select your budget</h3>
+            <div class="container">
+                <div class="row">
+                    <a type="button" class="">30,000 to 40,000 Rs.</a>
+                    <a onclick="mediumToHigh()" type="button" class="">40,000 to 90,000 Rs.</a>
+                    <a onclick="highEnd()" type="button" class="">91,000 to 1,30,000 Rs.</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="m-check-h-generation" class="border-danger content-right">
+            <h3 class=""><a type="button" onclick="goBack()"><i class="fa fa-arrow-circle-o-left"></i></a> Medium Range:
+                (40,000 to
+                90,000 Rs.)</h3>
+            <div class="container">
+                <div class="row">
+                    <a onclick="highEnd('extended')" type="button" class="">Ya, but not too much</a>
+                    <a onclick="medium('cannot-extend')" type="button" class="">No, I have a tight budget</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="m-generation" class="border-danger content-right">
+            <h3 class=""><a type="button" onclick="goBack()"><i class="fa fa-arrow-circle-o-left"></i></a> Medium Range:
+                (40,000 to
+                90,000 Rs.)</h3>
+            <div class="container">
+                <div class="row">
+                    <a href="{% url 'light-weight' %}" type="button" class="">i3, 10th Gen</a>
+                    <a href="{% url 'medium' %}" type="button" class="">i5, 10th Gen</a>
+                    <a href="#" type="button" class="">i7, 11th Gen</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div hidden id="h-generation" class="border-danger content-right">
+            <h3 class=""><a type="button" onclick="goBack()"><i class="fa fa-arrow-circle-o-left"></i></a> High end:
+                (91,000 to
+                1,30,000 Rs.)</h3>
+            <div class="container">
+                <div class="row">
+                    <a href="{% url 'light-weight' %}" type="button" class="">i9, 10th Gen</a>
+                    <a href="{% url 'medium' %}" type="button" class="">i7, 11th Gen</a>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("m-check-h-generation").hidden = true;
+            document.getElementById("m-generation").hidden = true;
+            document.getElementById("h-generation").hidden = true;
+
+            function mediumToHigh() {
+                document.getElementById("select-budget").hidden = true;
+                document.getElementById("m-check-h-generation").removeAttribute('hidden');
+                document.getElementById('audioplayer-2.2').play();
+            }
+
+            function medium(option) {
+                document.getElementById("select-budget").hidden = true;
+                document.getElementById("m-check-h-generation").hidden = true;
+                document.getElementById("m-generation").removeAttribute('hidden');
+
+                if (option === 'cannot-extend') {
+                    document.getElementById('audioplayer-2.4').play();
+                } else
+                    document.getElementById('audioplayer-2.2').play();
+
+            }
+
+            function highEnd(hint) {
+                document.getElementById("select-budget").hidden = true;
+                document.getElementById("m-check-h-generation").hidden = true;
+                document.getElementById("m-generation").hidden = true;
+                document.getElementById("h-generation").removeAttribute('hidden');
+
+                if (hint === 'extended') {
+                    {# Ya I can extend my budget. #}
+                    document.getElementById('audioplayer-2.3').play();
+                } else
+                    document.getElementById('audioplayer-2.5').play();
+
+            }
+
+            function goBack() {
+                document.getElementById("m-generation").hidden = true;
+                document.getElementById("m-check-h-generation").hidden = true;
+                document.getElementById("h-generation").hidden = true;
+                document.getElementById("select-budget").removeAttribute('hidden');
+            }
+        </script>
+
+    </div>
+{% endblock %}
