@@ -1,6 +1,4 @@
-import admin as admin
 from django.db import models
-from django.contrib import admin
 
 
 def new_product_image(instance, filename):
